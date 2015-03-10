@@ -8,6 +8,10 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'rules' =>[
+                    'search/<q:\w+>' => 'search/index'
+
+            ],
         ],
          'view' => [
             'theme' => [

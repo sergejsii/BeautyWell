@@ -7,6 +7,8 @@ use frontend\assets\AppAsset;
 use frontend\assets\ThemeAsset;
 use frontend\widgets\Alert;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+use common\models\UserAddress;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -43,8 +45,9 @@ ThemeAsset::register($this);
                 <!-- HEADER-LOGIN -->
                 <div class="header-login">
                    <?php if (Yii::$app->user->isGuest): ?>
-                    <a href="<?= \yii\helpers\Url::to(['/user/security/login']) ?>" class=""><i class="fa fa-power-off"></i> Login</a>
+                    <a href="<?= \yii\helpers\Url::to(['/user/security/login']) ?>" class=""><i class="fa fa-power-off"></i>Login</a>
                    <?php else: ?>
+                       <a href="<?= \yii\helpers\Url::to(['/profile']) ?>" class=""><i class="fa  fa-user"></i> <?=  \Yii::$app->user->identity->username ?>   </a>
                        <a href="<?= \yii\helpers\Url::to(['/user/security/logout']) ?>" class=""><i class="fa fa-power-off"></i> Logout</a>
 
                    <?php endif ?>
@@ -116,8 +119,7 @@ ThemeAsset::register($this);
         <!-- HEADER SEARCH SECTION -->
         <div class="header-search slider-home">
             <div class="header-search-bar">
-                <form action="#">
-
+                <form action="<?= Url::to(['/search'])?>" method="get">
                     <div class="search-toggle">
                         <div class="container">
                             <div class="distance-range">
@@ -167,21 +169,20 @@ ThemeAsset::register($this);
 
                         </div>
                     </div>  <!-- END .search-toggle -->
-
                     <div class="container">
                         <button class="toggle-btn" type="submit"><i class="fa fa-bars"></i></button>
 
                         <div class="search-value ">
                             <div class="keywords">
-                                <input type="text" class="form-control" placeholder="Keywords">
+                                   <input type="text" class="form-control" name="q"  placeholder="Keywords">
                             </div>
 
                             <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
                         </div>
                     </div> <!-- END .CONTAINER -->
-                </form>
-            </div> <!-- END .header-search-bar -->
 
+            </div> <!-- END .header-search-bar -->
+            </form>
         </div> <!-- END .SEARCH and slide-section -->
 
         <div class="container">

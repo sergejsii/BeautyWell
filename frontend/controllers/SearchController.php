@@ -4,11 +4,13 @@ namespace frontend\controllers;
 
 use common\models\UserAddress;
 use yii\data\ActiveDataProvider;
+use common\models\Category;
 
 class SearchController extends \yii\web\Controller
 {
     public function actionIndex($q)
     {
+       $categories =   Category::find()->asArray()->all();
        $dataProvider = new ActiveDataProvider([
             'query'=> UserAddress::find()->where(['like','ort',trim(preg_replace(["/deutschland/i",'/,/i'],['',''],$q))]),
             'pagination'=>[
@@ -16,7 +18,8 @@ class SearchController extends \yii\web\Controller
         ]]);
 
         return $this->render('index',[
-            'dataProvider'=>$dataProvider
+            'dataProvider'  => $dataProvider,
+            'categories'    => $categories
         ]);
     }
 
