@@ -47,6 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col col-sm-3">   <?= $form->field($model, 'plz') ?></div>
                     <div class="col col-sm-9">   <?= $form->field($model, 'ort') ?></div>
                 </div>
+                <?= $form->field($model, 'tel') ?>
+                <?= $form->field($model, 'fax') ?>
             </div>
             <div class="row">
                 <div class="col col-sm-12">

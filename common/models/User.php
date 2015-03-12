@@ -58,6 +58,16 @@ class User extends BaseUser
     /**
      * @var integer
      */
+
+    public $tel;
+    /**
+     * @var integer
+     */
+    public $fax;
+
+    /**
+     * @var integer
+     */
     public $lat;
 
     /**

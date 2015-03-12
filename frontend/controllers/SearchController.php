@@ -10,17 +10,16 @@ class SearchController extends \yii\web\Controller
 {
     public function actionIndex($q)
     {
-       $categories =   Category::find()->asArray()->all();
-       $dataProvider = new ActiveDataProvider([
-            'query'=> UserAddress::find()->where(['like','ort',trim(preg_replace(["/deutschland/i",'/,/i'],['',''],$q))]),
-            'pagination'=>[
+        $categories = Category::find()->asArray()->all();
+        $dataProvider = new ActiveDataProvider([
+            'query' => UserAddress::find()->where(['like', 'ort', trim(preg_replace(["/deutschland/i", '/,/i'], ['', ''], $q))]),
+            'pagination' => [
                 'pageSize' => 4
-        ]]);
-
-        return $this->render('index',[
-            'dataProvider'  => $dataProvider,
-            'categories'    => $categories
+            ]]);
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'categories' => $categories
         ]);
-    }
 
+    }
 }

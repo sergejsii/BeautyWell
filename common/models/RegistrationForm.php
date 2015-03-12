@@ -57,6 +57,17 @@ class RegistrationForm extends Model
     /** @var integer */
     public $plz;
 
+    /**
+     * @var string
+     */
+    public $tel;
+
+    /**
+     * @var string
+     */
+    public $fax;
+
+
     /** @var integer */
     public $land;
 
@@ -107,13 +118,19 @@ class RegistrationForm extends Model
         return [
             //Persönliche Angaben
             [['anrede','firma'],'required'],
+            //Firmenname
+
+            ['firma', 'filter', 'filter' => 'trim'],
+            ['firma', 'required'],
+            ['firma', 'unique', 'targetClass' => $this->module->modelMap['Profile'],
+                'message' => \Yii::t('user', 'This companyname has already been taken')],
 
             // Benutzerangaben
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'match', 'pattern' => '/^[a-zA-Z]\w+$/'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => $this->module->modelMap['User'],
-                'message' => \Yii::t('user', 'This username has already been taken')],
+//            ['username', 'unique', 'targetClass' => $this->module->modelMap['User'],
+//                'message' => \Yii::t('user', 'This username has already been taken')],
             ['username', 'string', 'min' => 3, 'max' => 20],
 
             ['email', 'filter', 'filter' => 'trim'],
@@ -152,6 +169,8 @@ class RegistrationForm extends Model
             'strasse' => \Yii::t('user', 'Strasse'),
             'ort' => \Yii::t('user', 'Ort'),
             'plz' => \Yii::t('user', 'PLZ'),
+            'tel' => \Yii::t('user', 'Telefon'),
+            'fax' => \Yii::t('user', 'Fax'),
             'land' => \Yii::t('user', 'Land'),
 
         ];
@@ -197,6 +216,8 @@ class RegistrationForm extends Model
         ]);
         $this->user->anrede = $this->anrede;
         $this->user->firma = $this->firma;
+        $this->user->tel = $this->tel;
+        $this->user->fax = $this->fax;
 //        $this->user->lat = $this->lat;
 //        $this->user->lng = $this->lng;
         $this->user->strasse = $this->strasse;

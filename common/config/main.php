@@ -9,7 +9,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' =>[
-                    'search/<q:\w+>' => 'search/index'
+                    'profile/<q:\w+>' => 'profile/index', // z.B. profile/firma
+//                  'search/<q:\w+>' => 'search/index',     //search/kosmetik
 
             ],
         ],
@@ -20,7 +21,11 @@ return [
                  ],
             ],
         ],
+//        'authManager' => [
+//            'class' => 'yii\rbac\DbManager',
+//        ]
     ],
+
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
@@ -28,7 +33,10 @@ return [
                 'User' => 'common\models\User',
                 'Profile' => 'common\models\Profile',
                 'RegistrationForm' => 'common\models\RegistrationForm',
+                'RegistrationForm' => 'common\models\RegistrationForm',
+
             ],
         ],
+
     ],
 ];
